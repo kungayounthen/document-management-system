@@ -6,6 +6,7 @@ import { FileContext } from '../../context/fileContext';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import { CreadentialsContext } from '../../context/credential';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -55,13 +56,14 @@ function SearchFilePage() {
     const [category, setCategory] = useState('');
     const[docType,setDocType]=useState('');
     const { saveFile } = useContext(FileContext);
-    const columns = ['Type', 'Doc. Name', 'Doc. No.', 'Upload Date'];
+    const{name}=useContext(CreadentialsContext);
+    const columns = ['Type', 'Doc. Name', 'Doc. No.', 'Upload Date','Owner'];
     const rows = saveFile;
     console.log(rows.length);
     return (
         <Box className='flex flex-1'>
-            <Box className='w-4/5 mx-auto h-70 self-center'>
-                <Box className='flex gap-4'>
+            <Box className='w-[90%] mx-auto h-[80%] self-center pb-2'>
+                <Box className='flex gap-4 '>
                     <Box >
                         <select id="category" value={category} className="h-12 rounded-md px-4" onChange={(event) => setCategory(event.target.value)}>
                             <option value='' selected>category</option>
@@ -95,31 +97,33 @@ function SearchFilePage() {
                         </Search>
                     </Box>
                 </Box>
-                    <TableContainer sx={{ maxHeight: 440 }} className='mt-5 rounded-md'>
-                        <Table stickyHeader aria-label="sticky table" className='bg-white'>
+                    <TableContainer  className='mt-5 rounded-md h-full bg-white  overflow-y-scroll'>
+                        <Table stickyHeader aria-label="sticky table" className={rows.length > 0 ? 'h-auto' : 'h-full' }>
                             <TableHead >
-                                <TableRow >
+                                <TableRow>
                                     {columns.map((item, i) => (
-                                        <TableCell key={i} className='border border-white px-auto' sx={{textAlign:'center'}}>{item}</TableCell>
+                                        <TableCell key={i} className='border border-white px-auto' align='center'>{item}</TableCell>
                                     ))}
                                 </TableRow>
                                 </TableHead>
-                                <TableBody className='flex flex-col justify-center items-center'>
-                                {rows.length > 0 && rows.map((item, i) => (
-                                    <TableRow key={i} >
-                                    <TableCell className='w-10
-                                    '><Box className='flex flex-col justify-center items-center'>{selectIcon(item.type)} <p>{item.type.split('/')[1]}</p></Box></TableCell>
-                                        <TableCell sx={{textAlign:'center'}}>{item.name}</TableCell>
-                                        <TableCell sx={{textAlign:'center'}}>{'#'+item.docNo}</TableCell>
-                                        <TableCell sx={{textAlign:'center'}}>{item.date.toLocaleDateString()}</TableCell>
+                                <TableBody className='h-full w-full'> 
+                                {rows.length>0 && rows.map((item, i) => (
+                                    <TableRow key={i} sx={{display:'table-row',height:'50px',boxSizing:'border-box'}} className='box-border h-10'>
+                                    <TableCell className='w-10'>
+                                    <Box className='flex flex-col justify-center items-center'>{selectIcon(item.type)} <p>{item.type.split('/')[1]}</p></Box>
+                                    </TableCell>
+                                        <TableCell align='center'>{item.name}</TableCell>
+                                        <TableCell align='center'>{'#'+item.docNo}</TableCell>
+                                        <TableCell align='center'>{item.date.toLocaleDateString()}</TableCell>
+                                        <TableCell align='center'>{name}</TableCell>
                                         </TableRow>
                                         ))}
-                                        {rows.length === 0 && <TableRow>
-                                            <TableCell colSpan={columns.length} className='flex justify-center items-center h-60 border-0' style={{border:'none'}}>
+                                        {rows.length === 0 && <TableRow className='w-full h-full' sx={{border:'none'}}>
+                                            <TableCell colSpan={columns.length}>
                                                 <p className='text-center'>No rows</p>
                                             </TableCell>
                                         </TableRow>}
-                                </TableBody>
+                                        </TableBody>
                         </Table>
                     </TableContainer>
             </Box>

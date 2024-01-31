@@ -1,6 +1,6 @@
 .MuiTableRow-root{
-height: 100px;
+height: 50px;
 display: flex;
-flex-basis: 1;
+
 width: 100%;
 }

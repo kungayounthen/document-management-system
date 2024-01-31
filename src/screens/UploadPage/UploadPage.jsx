@@ -69,7 +69,7 @@ return (
   <Box component='main' className="flex flex-1">
     <Toolbar />
     <Box className='self-center w-3/5 transparent mx-auto container py-4 px-8 rounded-md shadow-lg shadow-slate-500'>
-      <h3 className="underline text-center text-indigo-500  text-xl font-semibold">Upload your document</h3>
+      <h3 className="underline text-center text-purple-500  text-xl font-semibold">Upload your document</h3>
       <Box className='flex flex-1 justify-around gap-3 mt-5'>
 
         <Box className='flex flex-col flex-1'>
@@ -109,7 +109,7 @@ return (
             {!isDragging ?
               <Box>
                 <span className="capitalize">Drag & drop documents or {''}</span>
-                <span className="font-semibold text-indigo-500 hover:cursor-pointer underline underline-offset-2 capitalize" onClick={selectFiles}>browse</span>
+                <span className="font-semibold text-purple-500 hover:cursor-pointer underline underline-offset-2 capitalize" onClick={selectFiles}>browse</span>
               </Box> :
               <span className="capitalize text-center">Release the document</span>
             }
@@ -118,7 +118,7 @@ return (
           </Box>
           </Box>
           </div>
-          <Button variant="contained" sx={{marginTop:3}} className="w-full" onClick={handleUpload}>Upload</Button>
+          <Button variant="contained" sx={{marginTop:3,backgroundColor:'black'}} className="w-full" onClick={handleUpload}>Upload</Button>
     </Box>
   </Box>
 )

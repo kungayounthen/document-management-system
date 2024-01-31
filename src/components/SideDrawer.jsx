@@ -12,7 +12,7 @@ function SideDrawer() {
     <>
       <Box className="flex  uploadContainer ">
         <Box className="flex flex-col h-[95%] w-1/5 transparent ml-5 my-auto rounded-md p-3 border shadow-lg shadow-slate-500" component='main'>
-          <h3 className="text-center capitalize font-bold text-lg my-5 text-indigo-500">Document <br /> management</h3>
+          <h3 className="text-center capitalize font-bold text-lg my-5 text-purple-500">Document <br /> management</h3>
           <Divider className="w-full self-center" />
           <Box className="grid gap-3 my-5 ml-4">
             <Box className='flex items-center content-center gap-2 hover:bg-slate-300 hover:cursor-pointer active:bg-slate-400 rounded-md p-3' onClick={()=>navigate('/upload')}>
@@ -29,7 +29,7 @@ function SideDrawer() {
             </Box>
           </Box>
           <Box className='mt-auto w-full mb-5'>
-          <Button variant="contained" className="flex gap-2 w-full" onClick={()=>navigate('/login')}><h3>Logout</h3><LogoutIcon/></Button>
+          <Button variant="contained" className="flex gap-2 w-full" sx={{backgroundColor:'black'}} onClick={()=>navigate('/login')}><h3>Logout</h3><LogoutIcon/></Button>
           </Box>
         </Box>
         <Outlet />
